@@ -8,7 +8,14 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Player trúng đạn!");
             // TODO: Gây sát thương hoặc restart game
-            Destroy(gameObject); // Xoá đạn sau khi trúng
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Monster"))
+        {
+            Debug.Log("Monster bị tiêu diệt!");
+            KillManager.Instance.AddKill(); // ✅ Gọi tăng kill
+            Destroy(other.gameObject);      // Xoá quái
+            Destroy(gameObject);            // Xoá đạn
         }
     }
 }
